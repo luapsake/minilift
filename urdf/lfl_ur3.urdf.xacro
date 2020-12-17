@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="lfl_ur3_gripper" xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:include filename="$(find minilift)/urdf/lfl.urdf.xacro" />
+<lfl_base prefix="BMR001">
+</lfl_base>
+
+<xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+<!-- common stuff -->
+<xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+<!-- ur3 -->
+<xacro:include filename="$(find ur_description)/urdf/ur3.urdf.xacro" />
+
+<!-- arm -->
+<xacro:ur3_robot prefix="BMR001" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+/>
+
+
+<joint name="world_joint" type="fixed" >
+    <parent link="BMR001_lfl_liftplate" />
+    <child link = "BMR001base_link" />
+    <origin xyz="0.02 0.0 0.1" rpy="0.0 1.571  0.0" />
+</joint>
+
+
+<property name="ezgripper_offset_x" value="0.0" />
+<property name="ezgripper_offset_y" value="0.0" />
+<property name="ezgripper_offset_z" value="0.0" />
+
+
+<xacro:include filename="$(find ezgripper_driver)/urdf/ezgripper_dual_IM.urdf.xacro" />
+<!-- Add the gripper -->
+<ezgripper_dual_im prefix="BMR001" parent_link="BMR001tool0" >
+<origin xyz="${ezgripper_offset_x} ${ezgripper_offset_y} ${ezgripper_offset_z}" rpy="0
+0 0" />
+</ezgripper_dual_im>
+
+
+
+</robot>
