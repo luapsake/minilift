@@ -42,13 +42,20 @@
 <ezgripper_triple_mount prefix="BMR001" parent_link="BMR001tool0" >
 <origin xyz="${ezgripper_offset_x} ${ezgripper_offset_y} ${ezgripper_offset_z}" rpy="0
 0 0" />
-</ezgripper_triple_mount> 
+</ezgripper_triple_mount>
 
 <xacro:include filename="$(find visiondisplay)/urdf/Intel_Realsense_D435.urdf.xacro" />
-<!-- Add the D435_base -->
+<!-- Add the D435 -->
 <D435_base prefix="BMR001" parent_link="BMR001tool0" >
 <origin xyz="0.065 0 -0.13" rpy="0 -0.7 0"/>
 </D435_base>
+
+<xacro:include filename="$(find visiondisplay)/urdf/Intel_Realsense_L515.urdf.xacro" />
+<!-- Add the L515 -->
+<L515_base prefix="BMR001" parent_link="BMR001_lfl_base" >
+<origin xyz=".2 0 1.75" rpy="0 0 0"/>
+</L515_base>
+
 
 
 
