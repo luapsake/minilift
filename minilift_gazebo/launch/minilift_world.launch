@@ -19,7 +19,7 @@
 
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find minilift_description)/urdf/lfl_ur3.urdf.xacro'" />
+    command="$(find xacro)/xacro --inorder '$(find minilift_description)/urdf/lfl_ur3_ezg_tri_real.urdf.xacro'" />
 
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
