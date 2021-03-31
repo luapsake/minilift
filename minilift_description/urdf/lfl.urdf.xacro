@@ -48,8 +48,8 @@
     </inertial>
     </link>
 
-    <joint name="${prefix}_lfl_lift" type="prismatic">
-        <origin rpy="0 0 3.14159" xyz="0.22 0.0 0"/>
+    <joint name="${prefix}_lfl_lift" type="fixed">
+        <origin rpy="0 0 3.14159" xyz="0.22 0.0 1"/>
         <parent link="${prefix}_lfl_base"/>
         <child link="${prefix}_lfl_liftplate"/>
         <axis xyz="0 0 1"/>
@@ -96,14 +96,14 @@
     </link>
 
     <joint name="${prefix}_lfl_to_left_wheel" type="continuous">
-        <origin rpy="0.0 0 0" xyz="0.0 -0.2625 0.06050"/>
+        <origin rpy="0.0 0 0" xyz="0.0 -0.2625 0.0620"/>
         <parent link="${prefix}_lfl_base"/>
         <child link="${prefix}_left_wheel_link"/>
         <axis xyz="0 1 0"/>
     </joint>
  
     <joint name="${prefix}_lfl_to_right_wheel" type="continuous">
-        <origin rpy="0 0 0" xyz="0.0 0.2625 0.06050"/>
+        <origin rpy="0 0 0" xyz="0.0 0.2625 0.0620"/>
         <parent link="${prefix}_lfl_base"/>
         <child link="${prefix}_right_wheel_link"/>
         <axis xyz="0 1 0"/>

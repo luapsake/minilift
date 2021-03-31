@@ -8,7 +8,7 @@
 <xacro:property name="ezgripper_offset_z" value="0.0" />
 
 
-<xacro:include filename="$(find ezgripper_description)/urdf/ezgripper_triple_mount.urdf.xacro" />
+<xacro:include filename="$(find ezgripper_description)/urdf/ezgripper_single_mount.urdf.xacro" />
 <!-- Add the gripper -->
 <ezgripper_triple_mount prefix="BMR001" parent_link="BMR001tool0" >
 <origin xyz="${ezgripper_offset_x} ${ezgripper_offset_y} ${ezgripper_offset_z}" rpy="0
@@ -24,7 +24,7 @@
 <xacro:include filename="$(find visiondisplay)/urdf/Intel_Realsense_L515.urdf.xacro" />
 <!-- Add the L515 -->
 <L515_base prefix="BMR001" parent_link="BMR001_lfl_base" >
-<origin xyz=".2 0 1.85" rpy="0 0 0"/>
+<origin xyz=".2 0 1.75" rpy="0 0 0"/>
 </L515_base>
 
 

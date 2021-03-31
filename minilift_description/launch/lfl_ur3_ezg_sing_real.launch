@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="model" default="$(find minilift_description)/urdf/lfl_ur3_ezg_triple.urdf.xacro"/>
+  <arg name="model" default="$(find minilift_description)/urdf/lfl_ur3_ezg_sing_real.urdf.xacro"/>
   <arg name="gui" default="true" />
   <arg name="rvizconfig" default="$(find minilift_description)/rviz/lfl_ur3_ezg_triple.rviz" />
 
