@@ -11,13 +11,13 @@
 
     <link name="${prefix}_lfl_base">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0.0605" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://minilift_description/meshes/visual/LFL_xyz.stl"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0.0605" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://minilift_description/meshes/collision/LFL_xyz.stl"/>
         </geometry>
@@ -31,80 +31,82 @@
 
     <link name="${prefix}_lfl_liftplate">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 3.14159"/>
         <geometry>
           <mesh filename="package://minilift_description/meshes/visual/LFL_liftplate.stl"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 3.14159"/>
         <geometry>
           <mesh filename="package://minilift_description/meshes/collision/LFL_liftplate.stl"/>
         </geometry>
       </collision>
     <inertial>
-      <mass value=".3"/>
+      <mass value="1"/>
       <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
     </inertial>
     </link>
 
     <joint name="${prefix}_lfl_lift" type="prismatic">
-        <origin rpy="0 0 0" xyz="-0.22 0.0 0.0"/>
-        <parent link="${prefix}_lfl_liftplate"/>
-        <child link="${prefix}_lfl_base"/>
-        <axis xyz="0 0 -1"/>
-        <limit effort="0" lower="0.15" upper="1.5" velocity="0.05"/>
+        <origin rpy="0 0 3.14159" xyz="0.22 0.0 0"/>
+        <parent link="${prefix}_lfl_base"/>
+        <child link="${prefix}_lfl_liftplate"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="0.0" lower="0.15" upper="1.5" velocity="0.05"/>
     </joint>
 
 
     <link name="${prefix}_left_wheel_link">
       <visual>
-        <origin xyz="0 -0.2625 0" rpy="1.571 0 0"/>
+        <origin xyz="0 0.0 0" rpy="-1.571 0 0"/>
         <geometry>
           <cylinder length="0.005" radius="0.0605"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 -0.2625 0" rpy="1.571 0 0"/>
+        <origin xyz="0 0.0 0" rpy="-1.571 0 0"/>
         <geometry>
           <cylinder length="0.005" radius="0.0605"/>
         </geometry>
       </collision>
     <inertial>
-      <mass value=".3"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <mass value="3"/>
+      <inertia ixx="0.01" ixy="0.01" ixz="0.01" iyy="0.01" iyz="0.01" izz="0.01"/>
     </inertial>
     </link>
 
     <link name="${prefix}_right_wheel_link">
       <visual>
-        <origin xyz="0 0.2625 0" rpy="1.571 0 0"/>
+        <origin xyz="0 0.0 0" rpy="1.571 0 0"/>
         <geometry>
           <cylinder length="0.005" radius="0.0605"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0.2625 0" rpy="1.571 0 0"/>
+        <origin xyz="0 0.0 0" rpy="1.571 0 0"/>
         <geometry>
           <cylinder length="0.005" radius="0.0605"/>
         </geometry>
       </collision>
     <inertial>
-      <mass value=".3"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <mass value="3"/>
+      <inertia ixx="0.01" ixy="0.01" ixz="0.01" iyy="0.01" iyz="0.01" izz="0.01"/>
     </inertial>
     </link>
 
     <joint name="${prefix}_lfl_to_left_wheel" type="continuous">
-        <origin rpy="1.571 0 0" xyz="0 0.0 0.0"/>
+        <origin rpy="0.0 0 0" xyz="0.0 -0.2625 0.06050"/>
         <parent link="${prefix}_lfl_base"/>
         <child link="${prefix}_left_wheel_link"/>
+        <axis xyz="0 1 0"/>
     </joint>
  
     <joint name="${prefix}_lfl_to_right_wheel" type="continuous">
-        <origin rpy="1.571 0 0" xyz="0 0 0.0"/>
+        <origin rpy="0 0 0" xyz="0.0 0.2625 0.06050"/>
         <parent link="${prefix}_lfl_base"/>
         <child link="${prefix}_right_wheel_link"/>
+        <axis xyz="0 1 0"/>
     </joint>
  
      <gazebo reference="${prefix}_right_wheel_link">
