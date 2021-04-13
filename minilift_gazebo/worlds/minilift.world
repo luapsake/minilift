@@ -106,7 +106,7 @@
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/home/catkin_ws/src/kavi/kavi_gazebo/gazebo_models/bed/meshes/bed.dae</uri>
+              <uri>/home/sake/catkin_ws/src/kavi/kavi_gazebo/gazebo_models/bed/meshes/bed.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -130,7 +130,7 @@
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/home/catkin_ws/src/kavi/kavi_gazebo/gazebo_models/bed/meshes/bed.dae</uri>
+              <uri>/home/sake/catkin_ws/src/kavi/kavi_gazebo/gazebo_models/bed/meshes/bed.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -213,7 +213,7 @@
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/home/catkin_ws/src/kavi/kavi_gazebo/gazebo_models/iMandy/meshes/iMandy.dae</uri>
+              <uri>/home/sake/catkin_ws/src/kavi/kavi_gazebo/gazebo_models/iMandy/meshes/iMandy.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -237,7 +237,7 @@
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/home/catkin_ws/src/kavi/kavi_gazebo/gazebo_models/iMandy/meshes/iMandy.dae</uri>
+              <uri>/home/sake/catkin_ws/src/kavi/kavi_gazebo/gazebo_models/iMandy/meshes/iMandy.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
