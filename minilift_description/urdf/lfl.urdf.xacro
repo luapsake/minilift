@@ -129,19 +129,18 @@
 
 
 
-</xacro:macro>
 
 <gazebo>
-  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so"  params="prefix">
 
     <!-- Plugin update rate in Hz -->
     <updateRate>0</updateRate>
 
     <!-- Name of left joint, defaults to `left_joint` -->
-    <leftJoint>base_link_left_wheel_joint</leftJoint>
+    <leftJoint>${prefix}_left_wheel_link</leftJoint>
 
     <!-- Name of right joint, defaults to `right_joint` -->
-    <rightJoint>base_link_right_wheel_joint</rightJoint>
+    <rightJoint>${prefix}_right_wheel_link</rightJoint>
 
     <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
     <wheelSeparation>0.5250</wheelSeparation>
@@ -184,4 +183,5 @@
   </plugin>
 </gazebo>
 
+</xacro:macro>
 </robot>
