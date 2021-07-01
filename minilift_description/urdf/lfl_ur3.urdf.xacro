@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot name="lfl_ur3_gripper" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="minilift" xmlns:xacro="http://ros.org/wiki/xacro">
 
 <xacro:include filename="$(find minilift_description)/urdf/lfl.urdf.xacro" />
 <lfl_base prefix="BMR001">

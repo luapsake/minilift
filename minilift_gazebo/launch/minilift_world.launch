@@ -1,5 +1,10 @@
 <launch>
 
+  <!-- Added parameters -->
+  <arg name="world_name"      default="empty.world"/>
+  <arg name="rviz_enabled"    default="true"/>
+
+
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
   <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
@@ -9,7 +14,7 @@
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find minilift_gazebo)/worlds/minilift.world"/>
+    <arg name="world_name" value="$(find minilift_gazebo)/worlds/$(arg world_name)"/>
     <arg name="debug" value="$(arg debug)" />
     <arg name="gui" value="$(arg gui)" />
     <arg name="paused" value="$(arg paused)"/>
@@ -19,13 +24,30 @@
 
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find minilift_description)/urdf/lfl_ur3_ezg_tri_real.urdf.xacro'" />
+    command="$(find xacro)/xacro '$(find minilift_description)/urdf/lfl_ur3_ezg_tri_real.urdf.xacro'" />
 
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
     args="-urdf -model lfl_ur3_gripper -param robot_description"/>
 
-  <!-- ros_control minilift launch file -->
-  <!--include file="$(find minilift_control)/launch/minilift_control.launch" /-->
+
+  <!-- Robot and Joint Publishers -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+
+  <!-- RViz -->
+  <group if="$(arg rviz_enabled)">
+
+    <include file="$(find minilift_description)/launch/lfl_ur3_ezg_tri_real.launch">
+      <arg name="gazebo_enabled"    default="true"/>
+    </include>
+  
+  </group>
+
+  <!-- D435 Transforms -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="d435_gripper_transform" args="0 0 0 -1.5708 0 -1.5708 BMR001_D435_base BMR001_D435_optical"/> 
+  <node pkg="tf2_ros" type="static_transform_publisher" name="d435_top_transform"     args="0 0 0 -1.5708 0 -1.5708 BMR001_top_D435_base BMR001_top_D435_optical"/> 
+
 
 </launch>
