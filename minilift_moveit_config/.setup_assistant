@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: minilift_description
+    relative_path: urdf/lfl_ur3_ezg_tri_real.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/minilift.srdf
+  CONFIG:
+    author_name: Gaurav Gupta
+    author_email: gaurav@blackcoffeerobotics.com
+    generated_timestamp: 1625079505
