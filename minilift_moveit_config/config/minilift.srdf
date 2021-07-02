@@ -65,6 +65,7 @@
     <passive_joint name="BMR001_lfl_to_left_wheel" />
     <passive_joint name="BMR001_lfl_to_right_castor_wheel" />
     <passive_joint name="BMR001_lfl_to_right_wheel" />
+    <passive_joint name="BMR001_lfl_lift" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_1" link2="BMR0011_ezgripper_finger_L1_2" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_1" link2="BMR0011_ezgripper_finger_L2_1" reason="Adjacent" />
@@ -97,7 +98,6 @@
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_1" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_1" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_1" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0011_ezgripper_finger_L1_1" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR0011_ezgripper_finger_L2_1" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR0011_ezgripper_finger_L2_2" reason="Adjacent" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR0011_ezgripper_finger_pad_1" reason="Never" />
@@ -123,12 +123,10 @@
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR001_left_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR001_right_castor_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR001_right_wheel_link" reason="Never" />
-    <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR001_top_D435_base" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR001ee_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0011_ezgripper_finger_L1_2" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_1" link2="BMR0011_ezgripper_finger_L2_2" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_1" link2="BMR0011_ezgripper_finger_pad_1" reason="Adjacent" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_1" link2="BMR0011_ezgripper_finger_pad_2" reason="Never" />
@@ -182,12 +180,10 @@
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_2" link2="BMR001_left_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_2" link2="BMR001_right_castor_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_2" link2="BMR001_right_wheel_link" reason="Never" />
-    <disable_collisions link1="BMR0011_ezgripper_finger_L2_2" link2="BMR001_top_D435_base" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_2" link2="BMR001ee_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_2" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_2" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_L2_2" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0011_ezgripper_finger_L2_2" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_1" link2="BMR0011_ezgripper_finger_pad_2" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_1" link2="BMR0011_ezgripper_palm_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_1" link2="BMR0012_ezgripper_finger_L1_1" reason="Never" />
@@ -215,7 +211,6 @@
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_1" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_1" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_1" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0011_ezgripper_finger_pad_1" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR0011_ezgripper_palm_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR0012_ezgripper_finger_L1_1" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR0012_ezgripper_finger_L1_2" reason="Never" />
@@ -237,7 +232,6 @@
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR001_left_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR001_right_castor_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR001_right_wheel_link" reason="Never" />
-    <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR001_top_D435_base" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR001ee_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_finger_pad_2" link2="BMR001wrist_2_link" reason="Never" />
@@ -263,12 +257,10 @@
     <disable_collisions link1="BMR0011_ezgripper_palm_link" link2="BMR001_left_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_palm_link" link2="BMR001_right_castor_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_palm_link" link2="BMR001_right_wheel_link" reason="Never" />
-    <disable_collisions link1="BMR0011_ezgripper_palm_link" link2="BMR001_top_D435_base" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_palm_link" link2="BMR001ee_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_palm_link" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_palm_link" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0011_ezgripper_palm_link" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0011_ezgripper_palm_link" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0012_ezgripper_finger_L1_1" link2="BMR0012_ezgripper_finger_L1_2" reason="Never" />
     <disable_collisions link1="BMR0012_ezgripper_finger_L1_1" link2="BMR0012_ezgripper_finger_L2_1" reason="Adjacent" />
     <disable_collisions link1="BMR0012_ezgripper_finger_L1_1" link2="BMR0012_ezgripper_finger_L2_2" reason="Never" />
@@ -422,7 +414,6 @@
     <disable_collisions link1="BMR0012_ezgripper_palm_link" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0012_ezgripper_palm_link" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0012_ezgripper_palm_link" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0012_ezgripper_palm_link" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR0013_ezgripper_finger_L1_2" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR0013_ezgripper_finger_L2_1" reason="Adjacent" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR0013_ezgripper_finger_L2_2" reason="Never" />
@@ -435,12 +426,10 @@
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR001_left_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR001_right_castor_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR001_right_wheel_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR001_top_D435_base" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR001ee_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_finger_L1_1" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_2" link2="BMR0013_ezgripper_finger_L2_1" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_2" link2="BMR0013_ezgripper_finger_L2_2" reason="Adjacent" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_2" link2="BMR0013_ezgripper_finger_pad_1" reason="Never" />
@@ -457,7 +446,6 @@
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_2" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_2" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L1_2" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_finger_L1_2" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR0013_ezgripper_finger_L2_2" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR0013_ezgripper_finger_pad_1" reason="Adjacent" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR0013_ezgripper_finger_pad_2" reason="Never" />
@@ -468,12 +456,10 @@
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR001_left_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR001_right_castor_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR001_right_wheel_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR001_top_D435_base" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR001ee_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_finger_L2_1" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_2" link2="BMR0013_ezgripper_finger_pad_1" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_2" link2="BMR0013_ezgripper_finger_pad_2" reason="Adjacent" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_2" link2="BMR0013_ezgripper_palm_link" reason="Never" />
@@ -488,7 +474,6 @@
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_2" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_2" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_L2_2" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_finger_L2_2" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR0013_ezgripper_finger_pad_2" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR0013_ezgripper_palm_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR001_D435_base" reason="Never" />
@@ -497,12 +482,10 @@
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR001_left_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR001_right_castor_wheel_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR001_right_wheel_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR001_top_D435_base" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR001ee_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_finger_pad_1" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_2" link2="BMR0013_ezgripper_palm_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_2" link2="BMR001_D435_base" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_2" link2="BMR001_ezgripper_mount" reason="Never" />
@@ -515,7 +498,6 @@
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_2" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_2" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_finger_pad_2" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_finger_pad_2" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_palm_link" link2="BMR001_D435_base" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_palm_link" link2="BMR001_ezgripper_mount" reason="Adjacent" />
     <disable_collisions link1="BMR0013_ezgripper_palm_link" link2="BMR001_left_castor_wheel_link" reason="Never" />
@@ -527,7 +509,6 @@
     <disable_collisions link1="BMR0013_ezgripper_palm_link" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_palm_link" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR0013_ezgripper_palm_link" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR0013_ezgripper_palm_link" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR001_D435_base" link2="BMR001_ezgripper_mount" reason="Adjacent" />
     <disable_collisions link1="BMR001_D435_base" link2="BMR001_left_castor_wheel_link" reason="Never" />
     <disable_collisions link1="BMR001_D435_base" link2="BMR001_left_wheel_link" reason="Never" />
@@ -543,12 +524,10 @@
     <disable_collisions link1="BMR001_ezgripper_mount" link2="BMR001_left_wheel_link" reason="Never" />
     <disable_collisions link1="BMR001_ezgripper_mount" link2="BMR001_right_castor_wheel_link" reason="Never" />
     <disable_collisions link1="BMR001_ezgripper_mount" link2="BMR001_right_wheel_link" reason="Never" />
-    <disable_collisions link1="BMR001_ezgripper_mount" link2="BMR001_top_D435_base" reason="Never" />
     <disable_collisions link1="BMR001_ezgripper_mount" link2="BMR001ee_link" reason="Never" />
     <disable_collisions link1="BMR001_ezgripper_mount" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR001_ezgripper_mount" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR001_ezgripper_mount" link2="BMR001wrist_3_link" reason="Adjacent" />
-    <disable_collisions link1="BMR001_ezgripper_mount" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR001_left_castor_wheel_link" link2="BMR001_left_wheel_link" reason="Never" />
     <disable_collisions link1="BMR001_left_castor_wheel_link" link2="BMR001_lfl_base" reason="Adjacent" />
     <disable_collisions link1="BMR001_left_castor_wheel_link" link2="BMR001_lfl_liftplate" reason="Never" />
@@ -589,7 +568,6 @@
     <disable_collisions link1="BMR001_lfl_liftplate" link2="BMR001_right_wheel_link" reason="Never" />
     <disable_collisions link1="BMR001_lfl_liftplate" link2="BMR001_top_D435_base" reason="Never" />
     <disable_collisions link1="BMR001_lfl_liftplate" link2="BMR001base_link" reason="Adjacent" />
-    <disable_collisions link1="BMR001_lfl_liftplate" link2="BMR001ee_link" reason="Never" />
     <disable_collisions link1="BMR001_lfl_liftplate" link2="BMR001shoulder_link" reason="Never" />
     <disable_collisions link1="BMR001_lfl_liftplate" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR001_right_castor_wheel_link" link2="BMR001_right_wheel_link" reason="Never" />
@@ -631,16 +609,11 @@
     <disable_collisions link1="BMR001forearm_link" link2="BMR001upper_arm_link" reason="Adjacent" />
     <disable_collisions link1="BMR001forearm_link" link2="BMR001wrist_1_link" reason="Adjacent" />
     <disable_collisions link1="BMR001forearm_link" link2="BMR001wrist_2_link" reason="Never" />
-    <disable_collisions link1="BMR001forearm_link" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR001shoulder_link" link2="BMR001upper_arm_link" reason="Adjacent" />
     <disable_collisions link1="BMR001shoulder_link" link2="BMR001wrist_1_link" reason="Never" />
     <disable_collisions link1="BMR001shoulder_link" link2="BMR001wrist_2_link" reason="Never" />
     <disable_collisions link1="BMR001shoulder_link" link2="camera_holder" reason="Never" />
-    <disable_collisions link1="BMR001upper_arm_link" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR001wrist_1_link" link2="BMR001wrist_2_link" reason="Adjacent" />
     <disable_collisions link1="BMR001wrist_1_link" link2="BMR001wrist_3_link" reason="Never" />
-    <disable_collisions link1="BMR001wrist_1_link" link2="camera_holder" reason="Never" />
     <disable_collisions link1="BMR001wrist_2_link" link2="BMR001wrist_3_link" reason="Adjacent" />
-    <disable_collisions link1="BMR001wrist_2_link" link2="camera_holder" reason="Never" />
-    <disable_collisions link1="BMR001wrist_3_link" link2="camera_holder" reason="Never" />
 </robot>

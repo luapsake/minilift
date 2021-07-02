@@ -26,3 +26,7 @@ This package contains all the tools related to the UR3 deployment in Gazebo.
 * To drive the minilift bot around:
 
       rosrun minilift_gazebo key_drive.py
+
+* To actuate the liftplate ($JOINT_VALUE ranges from `0.15` to `0.56`):
+
+      rostopic pub /minilift/lift_position_controller/command std_msgs/Float64 "data: $JOINT_VALUE"

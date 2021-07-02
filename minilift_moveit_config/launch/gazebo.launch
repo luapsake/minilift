@@ -31,6 +31,12 @@
 <node pkg="tf2_ros" type="static_transform_publisher" name="d435_gripper_transform" args="0 0 0 -1.5708 0 -1.5708 BMR001_D435_base BMR001_D435_optical"/> 
 <node pkg="tf2_ros" type="static_transform_publisher" name="d435_top_transform"     args="0 0 0 -1.5708 0 -1.5708 BMR001_top_D435_base BMR001_top_D435_optical"/> 
 
+<!-- Load joint controller configurations from YAML file to parameter server -->
+<rosparam file="$(find minilift_gazebo)/config/lift_controller.yaml" command="load"/>
+
+<!-- load the controllers -->
+<node name="controller_spawner_lift" pkg="controller_manager" type="spawner" respawn="false"
+output="screen" ns="/minilift" args="lift_position_controller"/>
 
   <!-- startup simulated world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">

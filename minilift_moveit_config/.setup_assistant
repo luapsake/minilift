@@ -8,4 +8,4 @@ moveit_setup_assistant_config:
   CONFIG:
     author_name: Gaurav Gupta
     author_email: gaurav@blackcoffeerobotics.com
-    generated_timestamp: 1625079505
+    generated_timestamp: 1625252758
