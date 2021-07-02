@@ -21,6 +21,7 @@
 
 
   <run_depend>moveit</run_depend>
+  <run_depend>teleop_twist_keyboard</run_depend>
 
 
   <export>
