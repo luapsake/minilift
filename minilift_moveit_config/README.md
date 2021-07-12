@@ -40,7 +40,7 @@ A ROS moveit configuration package designed to simulate the minilift robot in ac
 
       roslaunch minilift_moveit_config demo.launch
 
-* Launch Gazebo independently with Moveit! and with the attached controllers:
+* Launch Gazebo independently without Moveit! but with the attached controllers:
 
       # In the first terminal
       roslaunch minilift_moveit_config gazebo.launch   
