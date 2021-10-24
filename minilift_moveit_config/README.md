@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/badge/melodic-passing-green&style=plastic">
+<img src="https://img.shields.io/badge/noetic-passing-green&style=plastic"> <img src="https://img.shields.io/badge/melodic-passing-green&style=plastic">
 
 # minilift_moveit_config
 

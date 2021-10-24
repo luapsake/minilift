@@ -7,6 +7,14 @@
 
 <xacro:macro name="lfl_base" params="prefix">
 
+  <!-- BASE FOOTPRINT --> 
+
+  <!-- <link name="${prefix}_lfl_base_footprint"/>
+
+  <joint name="${prefix}_lfl_base_footprint_joint" type="fixed">
+    <parent link="${prefix}_lfl_base_footprint"/>
+    <child link="${prefix}_lfl_base"/>
+  </joint> -->
 
   <!-- BASE LINK -->
 
