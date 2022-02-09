@@ -1,7 +1,7 @@
 <launch>
 
   <!-- Added parameters -->
-  <arg name="world_name"      default="empty.world"/>
+  <arg name="world_name"      default="minilift.world"/>
   <arg name="rviz_enabled"    default="true"/>
 
 
