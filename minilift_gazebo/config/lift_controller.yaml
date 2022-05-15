@@ -1,5 +1,0 @@
-minilift:
-
-  lift_position_controller:
-    type: position_controllers/JointPositionController
-    joint: BMR001_lfl_lift

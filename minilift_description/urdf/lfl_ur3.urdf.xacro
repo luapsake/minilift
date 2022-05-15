@@ -2,8 +2,7 @@
 <robot name="minilift" xmlns:xacro="http://ros.org/wiki/xacro">
 
 <xacro:include filename="$(find minilift_description)/urdf/lfl.urdf.xacro" />
-<xacro:lfl_base prefix="BMR001">
-</xacro:lfl_base>
+<xacro:lfl_base prefix="BMR001"/>
 
 <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
 

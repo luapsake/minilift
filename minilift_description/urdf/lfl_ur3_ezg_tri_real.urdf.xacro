@@ -11,8 +11,7 @@
 <xacro:include filename="$(find ezgripper_description)/urdf/ezgripper_triple_mount.urdf.xacro" />
 <!-- Add the gripper -->
 <xacro:ezgripper_triple_mount prefix="BMR001" parent_link="BMR001tool0" >
-    <origin xyz="${ezgripper_offset_x} ${ezgripper_offset_y} ${ezgripper_offset_z}" rpy="0
-    0 0" />
+    <origin xyz="${ezgripper_offset_x} ${ezgripper_offset_y} ${ezgripper_offset_z}" rpy="0 0 0" />
 </xacro:ezgripper_triple_mount>
 
 <xacro:include filename="$(find visiondisplay)/urdf/Intel_Realsense_D435.urdf.xacro" />
