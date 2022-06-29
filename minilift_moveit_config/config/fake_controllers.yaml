@@ -1,0 +1,24 @@
+controller_list:
+  - name: fake_manipulator_controller
+    type: $(arg execution_type)
+    joints:
+      - BMR001shoulder_pan_joint
+      - BMR001shoulder_lift_joint
+      - BMR001elbow_joint
+      - BMR001wrist_1_joint
+      - BMR001wrist_2_joint
+      - BMR001wrist_3_joint
+  - name: fake_ezgripper_controller
+    type: $(arg execution_type)
+    joints:
+      - BMR0011_ezgripper_knuckle_palm_L1_1
+      - BMR0011_ezgripper_knuckle_palm_L1_2
+      - BMR0012_ezgripper_knuckle_palm_L1_1
+      - BMR0012_ezgripper_knuckle_palm_L1_2
+      - BMR0013_ezgripper_knuckle_palm_L1_1
+      - BMR0013_ezgripper_knuckle_palm_L1_2
+initial:  # Define initial robot poses.
+  - group: manipulator
+    pose: home
+  - group: ezgripper
+    pose: open

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot name="lfl_ur3_gripper" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="minilift" xmlns:xacro="http://ros.org/wiki/xacro">
 
 <xacro:include filename="$(find minilift_description)/urdf/lfl.urdf.xacro" />
-<lfl_base prefix="BMR001">
-</lfl_base>
+<xacro:lfl_base prefix="BMR001"/>
 
 <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
 
@@ -27,10 +26,8 @@
 
 <joint name="world_joint" type="fixed" >
     <parent link="BMR001_lfl_liftplate" />
-    <child link = "BMR001base_link" />
+    <child link="BMR001base_link" />
     <origin xyz="-0.02 0.0 0.1" rpy="0.0 -1.571  0.0" />
 </joint>
-
-
 
 </robot>

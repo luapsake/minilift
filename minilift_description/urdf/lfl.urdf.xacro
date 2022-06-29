@@ -1,187 +1,274 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot name="lfl" xmlns:xacro="http://ros.org/wiki/xacro">
 
-<!--macro name="lfl" params="*origin"-->
 
-
+<xacro:include filename="$(find minilift_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find minilift_description)/urdf/macros.xacro" />
 
 <xacro:macro name="lfl_base" params="prefix">
 
-    <!-- links -->
+  <!-- BASE FOOTPRINT --> 
 
-    <link name="${prefix}_lfl_base">
-      <visual>
-        <origin xyz="0 0 0.0605" rpy="0 0 0"/>
-        <geometry>
-          <mesh filename="package://minilift_description/meshes/visual/LFL_xyz.stl"/>
-        </geometry>
-      </visual>
-      <collision>
-        <origin xyz="0 0 0.0605" rpy="0 0 0"/>
-        <geometry>
-          <mesh filename="package://minilift_description/meshes/collision/LFL_xyz.stl"/>
-        </geometry>
-      </collision>
-    <inertial>
-      <origin xyz=".3 0 0" rpy="0 0 0"/>
-      <mass value="30"/>
-      <inertia ixx="0.2" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
-    </inertial>
-    </link>
+  <!-- <link name="${prefix}_lfl_base_footprint"/>
 
-    <link name="${prefix}_lfl_liftplate">
-      <visual>
-        <origin xyz="0 0 0" rpy="0 0 3.14159"/>
-        <geometry>
-          <mesh filename="package://minilift_description/meshes/visual/LFL_liftplate.stl"/>
-        </geometry>
-      </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 3.14159"/>
-        <geometry>
-          <mesh filename="package://minilift_description/meshes/collision/LFL_liftplate.stl"/>
-        </geometry>
-      </collision>
-    <inertial>
-      <mass value="1"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
-    </inertial>
-    </link>
+  <joint name="${prefix}_lfl_base_footprint_joint" type="fixed">
+    <parent link="${prefix}_lfl_base_footprint"/>
+    <child link="${prefix}_lfl_base"/>
+  </joint> -->
 
-    <joint name="${prefix}_lfl_lift" type="fixed">
-        <origin rpy="0 0 3.14159" xyz="0.22 0.0 1"/>
-        <parent link="${prefix}_lfl_base"/>
-        <child link="${prefix}_lfl_liftplate"/>
-        <axis xyz="0 0 1"/>
-        <limit effort="0.0" lower="0.15" upper="1.5" velocity="0.05"/>
+  <!-- BASE LINK -->
+
+  <link name="${prefix}_lfl_base">
+    <visual>
+      <origin xyz="0 0 0.0605" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://minilift_description/meshes/visual/LFL_xyz.stl"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0605" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://minilift_description/meshes/collision/steel_base.stl"/>
+      </geometry>
+    </collision>
+  <inertial>
+    <origin xyz=".15 0 0.2" rpy="0 0 0"/>   <!-- Given -->
+    <mass value="0"/>
+    <inertia ixx="0.2" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+  </link>
+
+  <gazebo reference="${prefix}_lfl_base">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+
+  <!-- LIFTPLATE -->
+
+  <link name="${prefix}_lfl_liftplate">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+      <geometry>
+        <mesh filename="package://minilift_description/meshes/visual/LFL_liftplate.stl"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+      <geometry>
+        <mesh filename="package://minilift_description/meshes/collision/LFL_liftplate.stl"/>
+      </geometry>
+    </collision>
+  <inertial>
+    <mass value="1"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+  </link>
+
+  <gazebo reference="${prefix}_lfl_liftplate">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <joint name="${prefix}_lfl_lift" type="prismatic">
+      <origin rpy="0 0 3.14159" xyz="0.22 0.0 1"/>
+      <parent link="${prefix}_lfl_base"/>
+      <child link="${prefix}_lfl_liftplate"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="100.0" lower="0.15" upper="0.56" velocity="0.05"/>
+      <dynamics damping="0.5" friction="0.06"/>
+  </joint>
+
+  <!-- transmissions for Gazebo -->
+
+  <transmission name="${prefix}_lfl_lift_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${prefix}_lfl_lift">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
+    <actuator name="${prefix}_lfl_lift_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
 
 
-    <link name="${prefix}_left_wheel_link">
-      <visual>
-        <origin xyz="0 0.0 0" rpy="-1.571 0 0"/>
-        <geometry>
-          <cylinder length="0.005" radius="0.0605"/>
-        </geometry>
-      </visual>
-      <collision>
-        <origin xyz="0 0.0 0" rpy="-1.571 0 0"/>
-        <geometry>
-          <cylinder length="0.005" radius="0.0605"/>
-        </geometry>
-      </collision>
+  <!-- LEFT TRACTION WHEEL -->
+
+  <link name="${prefix}_left_wheel_link">
+    <visual>
+      <origin xyz="0 0.0 0" rpy="-1.571 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.0605"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.0 0" rpy="-1.571 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.0605"/>
+      </geometry>
+    </collision>
+  <inertial>
+    <mass value="0.1"/>
+    <xacro:cylinder_inertia m="0.1" r="0.0605" h="0.05"/>
+  </inertial>
+  </link>
+
+  <gazebo reference="${prefix}_left_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <joint name="${prefix}_lfl_to_left_wheel" type="continuous">
+    <origin rpy="0.0 0 0" xyz="0.0 0.2625 0.0620"/>
+    <parent link="${prefix}_lfl_base"/>
+    <child link="${prefix}_left_wheel_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- RIGHT TRACTION WHEEL -->
+
+  <link name="${prefix}_right_wheel_link">
+    <visual>
+      <origin xyz="0 0.0 0" rpy="-1.571 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.0605"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.0 0" rpy="-1.571 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.0605"/>
+      </geometry>
+    </collision>
+  <inertial>
+    <mass value="0.1"/>
+    <xacro:cylinder_inertia m="0.1" r="0.0605" h="0.05"/>
+  </inertial>
+  </link>
+
+  <gazebo reference="${prefix}_right_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+
+  <joint name="${prefix}_lfl_to_right_wheel" type="continuous">
+      <origin rpy="0 0 0" xyz="0.0 -0.2625 0.0620"/>
+      <parent link="${prefix}_lfl_base"/>
+      <child link="${prefix}_right_wheel_link"/>
+      <axis xyz="0 1 0"/>
+  </joint>
+
+ <!-- LEFT CASTOR WHEEL -->
+
+  <link name="${prefix}_left_castor_wheel_link">
+    <visual>
+      <origin xyz="0 0.0 0" rpy="1.571 0 0"/>
+      <geometry>
+        <cylinder length="0.038" radius="0.038"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.0 0" rpy="1.571 0 0"/>
+      <geometry>
+        <cylinder length="0.038" radius="0.038"/>
+      </geometry>
+    </collision>
     <inertial>
-      <mass value="3"/>
-      <inertia ixx="0.01" ixy="0.01" ixz="0.01" iyy="0.01" iyz="0.01" izz="0.01"/>
+      <mass value="0.1"/>
+      <xacro:cylinder_inertia m="0.1" r="0.038" h="0.038"/>
     </inertial>
-    </link>
+  </link>
 
-    <link name="${prefix}_right_wheel_link">
-      <visual>
-        <origin xyz="0 0.0 0" rpy="1.571 0 0"/>
-        <geometry>
-          <cylinder length="0.005" radius="0.0605"/>
-        </geometry>
-      </visual>
-      <collision>
-        <origin xyz="0 0.0 0" rpy="1.571 0 0"/>
-        <geometry>
-          <cylinder length="0.005" radius="0.0605"/>
-        </geometry>
-      </collision>
+  <gazebo reference="${prefix}_left_castor_wheel_link">
+    <mu1 value="0.1"/>
+    <mu2 value="0.1"/>
+    <kp  value="10000000.0" />
+    <kd  value="1.0" />
+    <fdir1 value="1 0 0"/>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <joint name="${prefix}_lfl_to_left_castor_wheel" type="continuous">
+    <origin rpy="0.0 0 0" xyz="0.65 0.2565 0.0310"/>
+    <parent link="${prefix}_lfl_base"/>
+    <child link="${prefix}_left_castor_wheel_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+  <!-- RIGHT CASTOR WHEEL -->
+
+  <link name="${prefix}_right_castor_wheel_link">
+    <visual>
+      <origin xyz="0 0.0 0" rpy="1.571 0 0"/>
+      <geometry>
+        <cylinder length="0.038" radius="0.038"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.0 0" rpy="1.571 0 0"/>
+      <geometry>
+        <cylinder length="0.038" radius="0.038"/>
+      </geometry>
+    </collision>
     <inertial>
-      <mass value="3"/>
-      <inertia ixx="0.01" ixy="0.01" ixz="0.01" iyy="0.01" iyz="0.01" izz="0.01"/>
+      <mass value="0.1"/>
+      <xacro:cylinder_inertia m="0.1" r="0.038" h="0.038"/>
     </inertial>
-    </link>
+  </link>
 
-    <joint name="${prefix}_lfl_to_left_wheel" type="continuous">
-        <origin rpy="0.0 0 0" xyz="0.0 -0.2625 0.0620"/>
-        <parent link="${prefix}_lfl_base"/>
-        <child link="${prefix}_left_wheel_link"/>
-        <axis xyz="0 1 0"/>
-    </joint>
- 
-    <joint name="${prefix}_lfl_to_right_wheel" type="continuous">
-        <origin rpy="0 0 0" xyz="0.0 0.2625 0.0620"/>
-        <parent link="${prefix}_lfl_base"/>
-        <child link="${prefix}_right_wheel_link"/>
-        <axis xyz="0 1 0"/>
-    </joint>
- 
-     <gazebo reference="${prefix}_right_wheel_link">
-         <mu1 value="1000.0"/>
-         <mu2 value="1000.0"/>
-         <kp value="10000000.0" />
-         <kd value="1.0" />
-         <fdr1 value="0 1 0" />
-         <material>Gazebo/Grey</material>
-     </gazebo>
+  <gazebo reference="${prefix}_right_castor_wheel_link">
+    <mu1 value="0.1"/>
+    <mu2 value="0.1"/>
+    <kp  value="10000000.0" />
+    <kd  value="1.0" />
+    <fdir1 value="1 0 0"/>
+    <material>Gazebo/Black</material>
+  </gazebo>
 
-     <gazebo reference="${prefix}_left_wheel_link">
-         <mu1 value="1000.0"/>
-         <mu2 value="1000.0"/>
-         <kp value="10000000.0" />
-         <kd value="1.0" />
-         <fdr1 value="0 1 0" />
-         <material>Gazebo/Grey</material>
-     </gazebo>
+  <joint name="${prefix}_lfl_to_right_castor_wheel" type="continuous">
+    <origin rpy="0.0 0 0" xyz="0.65 -0.2565 0.0310"/>
+    <parent link="${prefix}_lfl_base"/>
+    <child link="${prefix}_right_castor_wheel_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
 
 
 
+<!--......................DIFFERENTIAL DRIVE PLUGIN .....................................-->
 
-<gazebo>
-  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so"  params="prefix">
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <robotNamespace>/</robotNamespace>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>50</updateRate>
+      <legacyMode>false</legacyMode>
+      <leftJoint>${prefix}_lfl_to_left_wheel</leftJoint>
+      <rightJoint>${prefix}_lfl_to_right_wheel</rightJoint>
+      <wheelSeparation>0.5250</wheelSeparation>
+      <wheelDiameter>0.1210</wheelDiameter>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>${prefix}_lfl_base</robotBaseFrame>
+      <publishOdomTF>true</publishOdomTF>
+      <publishWheelTF>false</publishWheelTF>
+      <publishWheelJointState>false</publishWheelJointState>
+      <rosDebugLevel>na</rosDebugLevel>
+      <wheelAcceleration>0</wheelAcceleration>
+      <wheelTorque>20</wheelTorque>
+      <odometrySource>world</odometrySource>
+      <publishTf>1</publishTf>
+    </plugin>
+  </gazebo>
 
-    <!-- Plugin update rate in Hz -->
-    <updateRate>0</updateRate>
 
-    <!-- Name of left joint, defaults to `left_joint` -->
-    <leftJoint>${prefix}_left_wheel_link</leftJoint>
 
-    <!-- Name of right joint, defaults to `right_joint` -->
-    <rightJoint>${prefix}_right_wheel_link</rightJoint>
-
-    <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
-    <wheelSeparation>0.5250</wheelSeparation>
-
-    <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
-    <wheelDiameter>0.1210</wheelDiameter>
-
-    <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
-    <wheelAcceleration>1.0</wheelAcceleration>
-
-    <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
-    <wheelTorque>20</wheelTorque>
-
-    <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
-    <commandTopic>cmd_vel</commandTopic>
-
-    <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
-    <odometryTopic>odom</odometryTopic>
-
-    <!-- Odometry frame, defaults to `odom` -->
-    <odometryFrame>odom</odometryFrame>
-
-    <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
-    <robotBaseFrame>base_footprint</robotBaseFrame>
-
-    <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
-    <odometrySource>1</odometrySource>
-
-    <!-- Set to true to publish transforms for the wheel links, defaults to false -->
-    <publishWheelTF>false</publishWheelTF>
-
-    <!-- Set to true to publish transforms for the odometry, defaults to true -->
-    <publishOdom>true</publishOdom>
-
-    <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
-    <publishWheelJointState>false</publishWheelJointState>
-
-    <!-- Set to true to swap right and left wheels, defaults to true -->
-    <legacyMode>false</legacyMode>
-  </plugin>
-</gazebo>
+<!-- ................................................................................ -->
 
 </xacro:macro>
 </robot>

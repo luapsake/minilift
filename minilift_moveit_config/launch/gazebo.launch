@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="gazebo_gui" default="true"/>
+
+  
+  <include file="$(find minilift_moveit_config)/launch/ros_controllers.launch"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <rosparam param="source_list">[minilift/joint_states]</rosparam>
+  </node>
+
+    <!-- Robot state publisher -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0" />
+    <param name="tf_prefix" type="string" value="" />
+  </node>
+
+  <!-- Fake Calibration -->
+  <node pkg="rostopic" type="rostopic" name="fake_joint_calibration"
+        args="pub /calibrated std_msgs/Bool true" />
+
+  <!-- send robot urdf to param server -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find minilift_description)/urdf/lfl_ur3_ezg_tri_real.urdf.xacro'" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo at the origin, change x,y,z arguments to spawn in a different position -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+  args="-urdf -model minilift -param robot_description"/>
+
+<!-- D435 Transforms -->
+<node pkg="tf2_ros" type="static_transform_publisher" name="d435_gripper_transform" args="0 0 0 -1.5708 0 -1.5708 BMR001_D435_base BMR001_D435_optical"/> 
+<node pkg="tf2_ros" type="static_transform_publisher" name="d435_top_transform"     args="0 0 0 -1.5708 0 -1.5708 BMR001_top_D435_base BMR001_top_D435_optical"/> 
+
+<!-- Load joint controller configurations from YAML file to parameter server -->
+<rosparam file="$(find minilift_gazebo)/config/lift_controller.yaml" command="load"/>
+
+<!-- load the controllers -->
+<node name="controller_spawner_lift" pkg="controller_manager" type="spawner" respawn="false"
+output="screen" ns="/minilift" args="lift_position_controller"/>
+
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="worlds/empty.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gazebo_gui)"/>
+  </include>
+
+</launch>
