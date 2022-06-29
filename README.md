@@ -3,6 +3,7 @@
 This directory contains the base LFL and examples with a UR3 and EZGrippers
 
 
+
 We created multiple launch files as it helped us with easy launch/debugging during development. I'd recommend using just the following,
 
     roslaunch minilift_moveit_config demo_gazebo.launch
@@ -17,4 +18,9 @@ This brings up the entire system in Gazebo with Moveit! interface and control pl
 
 Put simply, please use roslaunch minilift_moveit_config demo_gazebo.launch and follow the instructions [here](https://github.com/luapsake/minilift/blob/devel/minilift_moveit_config/README.md#modes-of-actuation).
 
-You can safely ignore or delete everything that follows.
+What follows is old
+
+#   roslaunch minilift_gazebo minilift_world.launch
+#   rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+
+
