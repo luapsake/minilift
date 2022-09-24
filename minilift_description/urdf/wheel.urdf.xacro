@@ -24,7 +24,7 @@
 				<xacro:if value="$(arg mesh_enabled)">
 					<origin xyz="0 0 0" rpy="0 0 ${M_PI/2}" />
 					<geometry>
-						<mesh filename="package://onebot_description/meshes/wheel.dae" />
+						<mesh filename="package:$(find minilift_description)/meshes/wheel.dae" />
 					</geometry> 
 				</xacro:if>
 				<xacro:unless value="$(arg mesh_enabled)">
