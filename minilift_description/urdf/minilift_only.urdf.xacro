@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="minilift" xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+
+<xacro:include filename="$(find minilift_description)/urdf/minilift.urdf.xacro" />
+<xacro:minilift prefix="BMR001"/>
+
+
+</robot>

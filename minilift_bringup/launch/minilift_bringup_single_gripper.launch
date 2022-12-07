@@ -30,8 +30,8 @@
     <group ns="$(arg robot_namespace)">
 
 
-        <param name="robot_description" command="$(find xacro)/xacro '$(find minilift_description)/urdf/minilift_only.urdf.xacro'
-    --inorder  mesh_enabled:=$(arg mesh_enabled)"  /> 
+        <param name="robot_description" command="$(find xacro)/xacro '$(find minilift_description)/urdf/minilift_ur3_ezg_sing_real.urdf.xacro'
+            --inorder  mesh_enabled:=$(arg mesh_enabled)" />
 
         <node name="ds_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="  -z 0.0 
                         -urdf 

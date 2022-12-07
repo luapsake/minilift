@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="minilift" xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:include filename="$(find minilift_description)/urdf/minilift.urdf.xacro" />
+<xacro:minilift prefix="BMR001"/>
+
+<xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+<!-- common stuff -->
+<xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+
+<!-- ur3 -->
+<xacro:include filename="$(find ur_description)/urdf/ur3.urdf.xacro" />
+
+<!-- arm -->
+<xacro:ur3_robot prefix="BMR001" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+/>
+
+
+<joint name="world_joint" type="fixed" >
+    <parent link="BMR001_minilift_liftplate" />
+    <child link="BMR001base_link" />
+    <origin xyz="-0.02 0.0 0.1" rpy="0.0 -1.571  0.0" />
+</joint>
+
+</robot>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="minilift" xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:include filename="$(find minilift_description)/urdf/minilift_ur3.urdf.xacro" />
+
+<xacro:property name="ezgripper_offset_x" value="0.0" />
+<xacro:property name="ezgripper_offset_y" value="0.0" />
+<xacro:property name="ezgripper_offset_z" value="0.0" />
+
+
+<xacro:include filename="$(find ezgripper_description)/urdf/ezgripper_single_mount.urdf.xacro" />
+<!-- Add the gripper -->
+<xacro:ezgripper_single_mount prefix="BMR001" parent_link="BMR001tool0" activate_control="false" >
+	<origin xyz="${ezgripper_offset_x} ${ezgripper_offset_y} ${ezgripper_offset_z}" rpy="0 0 0"/>
+</xacro:ezgripper_single_mount>
+
+<xacro:include filename="$(find visiondisplay)/urdf/Intel_Realsense_D435.urdf.xacro" />
+<!-- Add the D435 -->
+<xacro:D435_base prefix="BMR001" parent_link="BMR001tool0" >
+	<origin xyz="0.065 0 -0.13" rpy="0 -0.7 0"/>
+</xacro:D435_base>
+
+<xacro:include filename="$(find visiondisplay)/urdf/Intel_Realsense_L515.urdf.xacro" />
+<!-- Add the L515 -->
+<xacro:L515_base prefix="BMR001" parent_link="BMR001_base_link" >
+	<origin xyz=".2 0 1.75" rpy="0 0 0"/>
+</xacro:L515_base>
+
+<gazebo>
+	<static>false</static>
+</gazebo>
+
+</robot>
