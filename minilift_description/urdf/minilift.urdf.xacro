@@ -25,15 +25,16 @@
                     izz="0.091971324"/>
         </inertial>
         <visual>
-                <origin xyz="0 0 0" rpy="0 0 0" />
+                <origin xyz="0.0 0 0.0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://minilift_description/meshes/visual/minilift_xyz.stl" />
+                    <mesh filename="/home/sake/catkin_ws/src/minilift/minilift_description/meshes/visual/minilift_xyz.dae" />
                 </geometry>
         </visual>
         <collision>
                 <origin xyz="0.350 0 0.9" rpy="0 0 0" />
                 <geometry>
-                    <box size="0.736 0.663 1.8"/>
+             <!--       <box size="0.736 0.663 1.8"/> -->
+                    <box size="0.1 0.1 .1"/> 
                 </geometry>
         </collision>
     </link>
@@ -49,6 +50,53 @@
         <axis xyz="0 1 0" rpy="0 0 0" />
     </joint>
 
+  <!-- LIFTPLATE -->
+  
+  <link name="${prefix}_minilift_liftplate">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+      <geometry>
+        <box size="0.01 0.10 0.25"/>
+      </geometry> 
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+      <geometry>
+        <box size="0.01 0.10 0.25"/>
+      </geometry> 
+    </collision>
+  <inertial>
+    <mass value="1"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+  </link>
+
+  <gazebo reference="${prefix}_minilift_liftplate">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <joint name="${prefix}_minilift_liftjoint" type="prismatic">
+      <origin rpy="0 0 3.14159" xyz="0.22 0.0 0.05"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_minilift_liftplate"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="100.0" lower="0.15" upper="0.56" velocity="0.05"/>
+      <dynamics damping="0.5" friction="0.06"/>
+  </joint>
+
+  <!-- transmissions for Gazebo -->
+
+  <transmission name="${prefix}_minilift_lift_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${prefix}_minilift_liftjoint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="${prefix}_minilift_lift_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
 
     <xacro:caster caster_prefix="rear" parent_link="${prefix}_base_link" >
         <origin xyz=".70 0.0 0" rpy="0 0 0" />
