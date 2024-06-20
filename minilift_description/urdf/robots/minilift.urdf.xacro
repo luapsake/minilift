@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot  xmlns:xacro="http://ros.org/wiki/xacro"
+        name="minilift"  >
+
+
+<xacro:property name="prefix" value="BMR001" />
+
+
+<xacro:include filename="$(find linorobot2_description)/urdf/robots/minilift_nolift.urdf.xacro" />
+
+
+  <!-- LIFTPLATE -->
+  
+  <link name="minilift_liftplate">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+      <geometry>
+        <box size="0.01 0.10 0.25"/>
+      </geometry> 
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+      <geometry>
+        <box size="0.01 0.10 0.25"/>
+      </geometry> 
+    </collision>
+  <inertial>
+    <mass value="1"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+  </link>
+
+  <gazebo reference="minilift_liftplate">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <joint name="minilift_liftjoint" type="prismatic">
+      <origin rpy="0 0 3.14159" xyz="0.22 0.0 0.05"/>
+      <parent link="base_link"/>
+      <child link="minilift_liftplate"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="100.0" lower="0.15" upper="1.5" velocity="0.05"/>
+      <dynamics damping="0.5" friction="0.06"/>
+  </joint>
+
+  <!-- transmissions for Gazebo -->
+
+  <transmission name="minilift_lift_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="minilift_liftjoint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="minilift_lift_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+
+
+</robot>

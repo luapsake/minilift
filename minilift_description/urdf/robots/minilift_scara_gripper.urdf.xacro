@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot  xmlns:xacro="http://ros.org/wiki/xacro"
+        name="minilift_scara_arm"  >
+
+
+<xacro:property name="prefix" value="BMR001" />
+
+<xacro:include filename="$(find minilift_description)/urdf/robots/minilift.urdf.xacro" />
+
+<xacro:include filename="$(find scara_arm_description)/urdf/scara_arm.urdf.xacro" >
+  </xacro:include>
+
+  <xacro:scara_arm parent_link="minilift_liftplate">
+     <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+</xacro:scara_arm>
+
+       <xacro:property name="ezgripper_offset_x" value="0.00"/>
+        <xacro:property name="ezgripper_offset_y" value="0.0"/>
+        <xacro:property name="ezgripper_offset_z" value="0.0"/>
+
+
+        <xacro:include filename="$(find ezgripper_description)/urdf/materials.urdf.xacro"/>
+        <xacro:include filename="$(find ezgripper_description)/urdf/ezgripper_triple_with_mount.urdf.xacro"/>
+
+        <!-- Add the gripper -->
+        <xacro:ezgripper_triple_with_mount prefix="left" parent_link="scara_arm_wrist">
+                <origin xyz="${ezgripper_offset_x} ${ezgripper_offset_y} ${ezgripper_offset_z}" rpy="1.5708 1.5708 0"/>
+        </xacro:ezgripper_triple_with_mount>
+
+
+</robot>

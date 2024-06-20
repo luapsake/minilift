@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot  xmlns:xacro="http://ros.org/wiki/xacro"
+        name="minilift_scara_arm"  >
+
+
+<xacro:property name="prefix" value="BMR001" />
+
+<xacro:include filename="$(find minilift_description)/urdf/robots/minilift.urdf.xacro" />
+
+<xacro:include filename="$(find scara_arm_description)/urdf/scara_arm.urdf.xacro" >
+  </xacro:include>
+
+  <xacro:scara_arm parent_link="minilift_liftplate">
+
+</xacro:scara_arm>
+
+
+
+</robot>
